@@ -121,7 +121,7 @@ a:hover {
     position: relative;
 }
 
-/* ==================== LOGO ==================== */
+/* LOGO */
 .contenedor-logo {
     display: flex;
     align-items: center;
@@ -155,7 +155,7 @@ a:hover {
     transition: var(--transicion-rapida);
 }
 
-/* ==================== MENÚ PRINCIPAL ==================== */
+/*MENÚ PRINCIPAL*/
 .menu-principal {
     display: flex;
     align-items: center;
@@ -181,7 +181,7 @@ a:hover {
     background-color: var(--color-secundario);
 }
 
-/* ==================== MENÚ HAMBURGUESA ==================== */
+/*MENÚ HAMBURGUESA*/
 .boton-menu-movil {
     display: none;
     background: none;
@@ -193,7 +193,7 @@ a:hover {
     font-size: 1.5rem;
 }
 
-/* ==================== OVERLAY ==================== */
+/*OVERLAY*/
 .overlay {
     position: fixed;
     top: 0;
@@ -212,7 +212,7 @@ a:hover {
     visibility: visible;
 }
 
-/* ==================== EFECTO LOGO AMPLIADO ==================== */
+/*EFECTO LOGO AMPLIADO*/
 .logo-ampliado {
     position: fixed;
     top: 50%;
@@ -238,7 +238,7 @@ a:hover {
     }
 }
 
-/* ==================== SECCIONES ==================== */
+/*SECCIONES*/
 .seccion {
     padding: 4rem 0;
 }
@@ -266,7 +266,7 @@ a:hover {
     margin-bottom: 2rem;
 }
 
-/* ==================== TARJETAS ==================== */
+/*TARJETAS*/
 .contenedor-tarjetas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -293,7 +293,7 @@ a:hover {
     margin-bottom: 1.5rem;
 }
 
-/* ==================== FORMULARIO ==================== */
+/*FORMULARIO*/
 .formulario-contacto {
     max-width: 600px;
     margin: 0 auto;
@@ -333,7 +333,7 @@ a:hover {
     resize: vertical;
 }
 
-/* ==================== FOOTER ==================== */
+/*FOOTER*/
 .footer-principal {
     background-color: var(--color-primario);
     color: var(--color-texto-claro);
@@ -370,7 +370,7 @@ a:hover {
     color: var(--color-secundario);
 }
 
-/* ==================== MEDIA QUERIES ==================== */
+/*MEDIA QUERIES*/
 @media (max-width: 992px) {
     .barra-navegacion {
         padding: 0 1rem;

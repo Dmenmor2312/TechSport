@@ -1,0 +1,113 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fondo y fuente base */
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #96c1ec, #5aa1e8);
+    color: #333;
+}
+
+/* Contenedor del fondo translúcido */
+.overlay {
+    min-height: 100vh;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px 20px;
+}
+
+/* Contenido principal */
+.container {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+/* Logo */
+.logo img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 30px;
+    animation: fadeIn 1.2s ease;
+}
+
+/* Título */
+h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+/* Opciones de elección */
+.roles {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Tarjetas */
+.card {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 25px 20px;
+    width: 180px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6px);
+    animation: fadeInUp 1s ease forwards;
+    opacity: 0;
+}
+
+.card img {
+    width: 80px;
+    margin-bottom: 15px;
+}
+
+.card span {
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+/* Hover más claro */
+.card:hover {
+    transform: translateY(-6px);
+    background-color: rgba(121, 116, 116, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .roles {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .card {
+        width: 100%;
+    }
+}

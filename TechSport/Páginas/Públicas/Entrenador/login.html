@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Entrenador</title>
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Login/Entrenador/estilos.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <img src="/TechSport/Recursos/img/Logo.png" alt="Logo TechSport" class="logo">
+            <h2>Acceso Entrenador</h2>
+            
+            <form id="loginForm">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" placeholder="ejemplo@correo.com">
+
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="••••••••">
+
+                <div></div>
+                <button type="submit">Ingresar</button>
+            </form>
+
+            <!-- Alerta que se muestra si el login es incorrecto -->
+            <div id="alertMessage" class="alert" style="display: none;">
+                <p>No tienes cuenta, <a href="/TechSport/Páginas/Públicas/Entrenador/registro.html">regístrate aquí</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/TechSport/Recursos/JavaScript/Entrenador/scriptLogin.js"></script>
+</body>
+</html>
