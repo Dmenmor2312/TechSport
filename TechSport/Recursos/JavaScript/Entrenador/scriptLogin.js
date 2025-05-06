@@ -1,13 +1,27 @@
-document.getElementById("loginForm").addEventListener("submit", function(event) {
+document.getElementById("loginForm").addEventListener("submit", function (event) {
     event.preventDefault();
 
-    var loginSuccess = false;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-    if (!loginSuccess) {
-        // Mostrar la alerta de "No tienes cuenta"
-        document.getElementById("alertMessage").style.display = "block";
-    } else {
-        // Redirigir al dashboard o página principal si el login es correcto
-        window.location.href = "/TechSport/Páginas/Privadas/Entrenador/inicio.html";
-    }
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("password", password);
+
+    fetch("/TechSport/Recursos/PHP/Entrenador/login.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = "/TechSport/Páginas/Privadas/Entrenador/inicio.html";
+        } else {
+            document.getElementById("alertMessage").style.display = "block";
+        }
+    })
+    .catch(error => {
+        console.error("Error en la solicitud:", error);
+    });
 });
+
