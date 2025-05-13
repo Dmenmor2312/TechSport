@@ -1,0 +1,145 @@
+body {
+    background: linear-gradient(to bottom, #e3ecf5, #cfd9e3);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+    line-height: 1.5;
+}
+
+.registro-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 24px;
+    margin: 60px auto;
+}
+
+.registro-card {
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.registro-logo {
+    width: 100px;
+    margin: 5px;
+}
+
+.registro-title {
+    color: #2c3e50;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.registro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.registro-group {
+    text-align: left;
+}
+
+.registro-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #34495e;
+    font-size: 0.95rem;
+}
+
+.registro-group input {
+    width: 80%;
+    padding: 14px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: #fafafa;
+}
+
+.registro-group input:focus {
+    border-color: #3a7bd5;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.25);
+    background-color: #fff;
+}
+
+.registro-group input.input-error {
+    border-color: #e74c3c;
+}
+
+.registro-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #3a7bd5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.registro-btn:hover {
+    background-color: #2f69b3;
+    transform: translateY(-1px);
+}
+
+.registro-error {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 4px;
+    min-height: 18px;
+    text-align: left;
+}
+
+.registro-footer {
+    margin-top: 28px;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.registro-link {
+    color: #3a7bd5;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.registro-link:hover {
+    text-decoration: underline;
+    color: #2f69b3;
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 480px) {
+    .registro-container {
+        padding: 16px;
+        margin: 20px auto;
+    }
+
+    .registro-card {
+        padding: 24px;
+    }
+
+    .registro-logo {
+        width: 100px;
+        margin-bottom: 16px;
+    }
+
+    .registro-title {
+        font-size: 1.4rem;
+    }
+
+    .registro-form {
+        gap: 12px;
+    }
+
+    .registro-btn {
+        padding: 10px;
+    }
+}

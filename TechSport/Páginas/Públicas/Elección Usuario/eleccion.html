@@ -3,29 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elección</title>
-    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Elección Usuario/estilos.css">
+    <title>Elección de Perfil | TechSport</title>
+    <style>
+        /* ESTILOS BASE COHERENTES CON LAS OTRAS PÁGINAS*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #e3ecf5, #cfd9e3);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #1e40af;
+        }
+        
+        .profile-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .profile-logo {
+            margin-bottom: 30px;
+        }
+        
+        .profile-logo img {
+            height: 100px;
+            width: auto;
+        }
+        
+        .profile-title {
+            color: #1e40af;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+        
+        .profile-options {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .profile-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 40px 30px;
+            width: 280px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid transparent;
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+            border-color: #2563eb;
+        }
+        
+        .profile-card img {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 25px;
+            object-fit: contain;
+        }
+        
+        .profile-card span {
+            color: #1e40af;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        /*RESPONSIVE - IGUAL QUE LAS OTRAS PÁGINAS*/
+        @media (max-width: 768px) {
+            .profile-container {
+                padding: 40px 20px;
+            }
+            
+            .profile-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            
+            .profile-options {
+                gap: 20px;
+            }
+            
+            .profile-card {
+                width: 220px;
+                padding: 30px 20px;
+            }
+            
+            .profile-card img {
+                width: 90px;
+                height: 90px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .profile-container {
+                padding: 30px 15px;
+            }
+            
+            .profile-title {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+            
+            .profile-card {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="overlay">
-        <div class="container">
-            <div class="logo">
-                <img src="/TechSport/Recursos/img/Logo.png" alt="Logo TechSport">
-            </div>
+    <div class="profile-container">
+        <div class="profile-logo">
+            <img src="/TechSport/Recursos/img/Logo.png" alt="TechSport">
+        </div>
 
-            <h1>Elige tu perfil</h1>
+        <h1 class="profile-title">Elige tu perfil</h1>
 
-            <div class="roles">
-                <a href="/TechSport/Páginas/Públicas/Entrenador/login.html" class="card">
-                    <img src="/TechSport/Recursos/img/LogoEntrenador.png" alt="Entrenador">
-                    <span>Entrenador</span>
-                </a>
+        <div class="profile-options">
+            <a href="/TechSport/Páginas/Públicas/Entrenador/login.html" class="profile-card">
+                <img src="/TechSport/Recursos/img/LogoEntrenador.png" alt="Entrenador">
+                <span>Entrenador</span>
+            </a>
 
-                <a href="/TechSport/Páginas/Públicas/Jugador/login.html" class="card">
-                    <img src="/TechSport/Recursos/img/LogoJugador.png" alt="Jugador">
-                    <span>Jugador</span>
-                </a>
-            </div>
+            <a href="/TechSport/Páginas/Públicas/Jugador/login.html" class="profile-card">
+                <img src="/TechSport/Recursos/img/LogoJugador.png" alt="Jugador">
+                <span>Jugador</span>
+            </a>
         </div>
     </div>
 </body>
