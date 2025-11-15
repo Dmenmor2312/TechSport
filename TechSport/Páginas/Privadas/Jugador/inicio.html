@@ -1,359 +1,88 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TechSport | Inicio Jugador</title>
-    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Principal/estilos.css" />
+    <title>TechSport - Inicio Jugador</title>
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Compartidos/estilos.css" />
+
+    <!-- Variables necesarias para colores -->
     <style>
-        /* Estilos para la página principal */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f7fafc;
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-
-        main {
-            min-height: 100vh;
-            padding-top: 50px;
-            padding-left: 20px;
-            padding-right: 20px;
-            max-width: 1200px;
-            margin: auto;
-            box-sizing: border-box;
-        }
-
-        /* Calendario */
-        #calendar {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            margin-top: 30px;
-        }
-
-        .calendar-header {
-            font-weight: bold;
-            background-color: #cbd5e0;
-            padding: 10px;
-            text-align: center;
-            color: #1a202c;
-        }
-
-        .calendar-day {
-            padding: 15px;
-            background-color: #e2e8f0;
-            border-radius: 5px;
-            text-align: center;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: background-color 0.3s ease;
-            border-left: 5px solid transparent;
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        /* Hover sobre los días del calendario */
-        .calendar-day:hover {
-            background-color: #ddd;
-        }
-
-        /* Visualización de tipo de evento en el calendario */
-        .calendar-day.partido {
-            border-left: 5px solid #2563eb;
-        }
-
-        .calendar-day.entrenamiento {
-            border-left: 5px solid #38a169;
-        }
-
-        .calendar-day.reunion {
-            border-left: 5px solid #fbbf24;
-        }
-
-        .calendar-day[data-day] {
-            font-weight: bold;
-        }
-
-        /* Notificaciones de eventos */
-        #eventos {
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        #eventos.visible {
-            opacity: 1;
-        }
-
-        /* Estilos de las tarjetas de eventos */
-        .card {
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            margin-bottom: 20px;
-        }
-
-        .card h3 {
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-            color: #1a202c;
-        }
-
-        /* Secciones de eventos */
-        .evento-seccion {
-            margin-bottom: 20px;
-            padding: 10px;
-            border-radius: 8px;
-            background-color: white;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .evento-seccion h4 {
-            margin-top: 0;
-        }
-
-        /* Colores para los bloques de eventos */
-        .evento-seccion.partido {
-            border-left: 5px solid #2563eb;
-        }
-
-        .evento-seccion.entrenamiento {
-            border-left: 5px solid #38a169;
-        }
-
-        .evento-seccion.reunion {
-            border-left: 5px solid #fbbf24;
-        }
-
-        /* Canal de difusión lista */
-        #canal-lista {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        #canal-lista li {
-            padding: 10px 15px;
-            background: white;
-            border-radius: 8px;
-            border-left: 5px solid #6366f1;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-            font-size: 0.95rem;
-        }
-
-        /* Media Query para dispositivos pequeños */
-        @media (max-width: 460px) {
-            main {
-                padding: 15px;
-            }
-
-            .calendar-day {
-                font-size: 1rem;
-                padding: 10px;
-            }
-
-            .calendar-header {
-                font-size: 0.9rem;
-                padding: 8px;
-            }
-
-            #calendar {
-                gap: 4px;
-            }
-
-            .card h3 {
-                font-size: 1rem;
-            }
-
-            .evento-seccion h4 {
-                font-size: 0.95rem;
-            }
-
-            #canal-lista li {
-                font-size: 0.9rem;
-                padding: 8px 12px;
-            }
+        :root {
+            --color-primary: #143b8d;
+            --color-primary-dark: #0a1a49;
+            --color-dark: #1a202c;
+            --radius: 6px;
+            --transition: 0.3s ease;
         }
     </style>
 </head>
 
-<body>
-    <!-- HEADER COMPARTIDO -->
+<body data-rol="jugador">
+
+    <!-- ========================= -->
+    <!--          HEADER           -->
+    <!-- ========================= -->
     <header class="header">
         <div class="header-top">
-            <img src="/TechSport/Recursos/img/Nombre.png" alt="TechSport" class="logo-header">
+            <img src="/TechSport/Recursos/img/Nombre.png" alt="TechSport" class="logo-header" id="logo-interactivo">
         </div>
+
         <nav class="navbar">
-            <div class="logo-container">
-                <div class="logo">
-                    <img src="/TechSport/Recursos/img/Logo.png" alt="Logo TechSport" id="logo-interactivo">
-                </div>
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="/TechSport/Páginas/Privadas/Jugador/inicio.html" class="nav-link active">Inicio</a></li>
-                <li><a href="" class="nav-link">Canal de Difusión</a></li>
-                <li><a href="" class="nav-link">Enviar Correo</a></li>
-                <li><a href="" class="nav-link">Carpetas</a></li>
-                <li><a href="" class="nav-link">Contacto</a></li>
-            </ul>
             <button class="hamburger" id="menuBtn">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a class="nav-link" href="/TechSport/Páginas/Privadas/Jugador/inicio.html">Inicio</a></li>
+                <li><a class="nav-link" href="#">Enviar Mensaje</a></li>
+                <li><a class="nav-link" href="#">Bandeja de Entrada</a></li>
+                <li><a class="nav-link" href="#">Perfil</a></li>
+                <li><a class="nav-link nav-login" href="#">Cerrar sesión</a></li>
+            </ul>
         </nav>
     </header>
-    <main class="calendario-wrapper">
-        <!-- Calendario -->
+
+    <!-- ========================= -->
+    <!--           MAIN            -->
+    <!-- ========================= -->
+    <main>
+
+        <!-- BOTÓN SOLO PARA ENTRENADOR Y PROFESIONAL -->
+        <button id="btn-nuevo-evento">Nuevo evento</button>
+
+        <!-- CALENDARIO -->
         <div id="calendar"></div>
 
-        <!-- Tarjetas de Eventos -->
-        <div class="card" id="eventos">
-            <h3>Próximos eventos</h3>
-
-            <div class="evento-seccion partido">
-                <h4>Partidos</h4>
-                <ul id="lista-partidos"></ul>
-            </div>
-
-            <div class="evento-seccion entrenamiento">
-                <h4>Entrenamientos</h4>
-                <ul id="lista-entrenamientos"></ul>
-            </div>
-
-            <div class="evento-seccion reunion">
-                <h4>Reuniones</h4>
-                <ul id="lista-reuniones"></ul>
-            </div>
+        <!-- TARJETA DE EVENTOS PARA ANIMACIÓN -->
+        <div id="eventos" class="card">
+            <h2>Eventos</h2>
+            <p>Aquí aparecerán los eventos creados.</p>
         </div>
-
-        <div class="card" id="canal">
-            <h3>Canal de difusión</h3>
-            <ul id="canal-lista"></ul>
+        <!-- TABLÓN DE NOTIFICACIONES -->
+        <div id="notificaciones" class="notificaciones-card">
+            <h2>Notificaciones</h2>
+            <ul id="lista-notificaciones"></ul>
         </div>
     </main>
 
+    <!-- ========================= -->
+    <!--           FOOTER          -->
+    <!-- ========================= -->
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-brand">
-                <div class="footer-logo">
-                    <img src="/TechSport/Recursos/img/Logo.png" alt="TechSport">
-                </div>
-                <h3>TechSport</h3>
-                <p>Gestión Deportiva Inteligente</p>
+            <div class="footer-logo">
+                <img src="/TechSport/Recursos/img/logo.png" alt="Logo Footer">
             </div>
-            <div class="footer-copyright">
-                <p>© 2025 TechSport.</p>
-            </div>
+            <h3>TechSport</h3>
+            <p>Entrena mejor. Progresa más rápido.</p>
         </div>
     </footer>
 
-    <script src="/TechSport/Recursos/JavaScript/Principal/script.js"></script>
-    <script>
-        // Datos de los eventos (puedes añadir más eventos según sea necesario)
-        const eventos = [
-            { tipo: 'partido', dia: 1 },
-            { tipo: 'entrenamiento', dia: 5 },
-            { tipo: 'reunion', dia: 12 },
-            { tipo: 'partido', dia: 15 },
-            { tipo: 'entrenamiento', dia: 20 }
-        ];
-
-        // Estilos por tipo de evento
-        const estilosEventos = {
-            partido: 'partido',  // Azul para partidos
-            entrenamiento: 'entrenamiento',  // Verde para entrenamientos
-            reunion: 'reunion',  // Amarillo para reuniones
-        };
-
-        // Función para obtener el número de días en un mes y el día de la semana del primer día
-        function obtenerDiasDelMes(year, month) {
-            const fecha = new Date(year, month, 0); // 0 días en el mes siguiente para obtener el último día del mes
-            const numDias = fecha.getDate();
-            const primerDia = new Date(year, month - 1, 1).getDay(); // Día de la semana del primer día del mes
-            return { numDias, primerDia };
-        }
-
-        // Función para generar el calendario dinámicamente
-        function generarCalendario() {
-            const calendario = document.getElementById('calendar');
-            calendario.innerHTML = '';  // Limpiar el calendario antes de regenerarlo
-
-            // Encabezados de días de la semana
-            const diasSemana = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
-            diasSemana.forEach(dia => {
-                const header = document.createElement('div');
-                header.classList.add('calendar-header');
-                header.textContent = dia;
-                calendario.appendChild(header);
-            });
-
-            // Obtener el número de días en el mes actual y el primer día de la semana
-            const fechaActual = new Date();
-            const { numDias, primerDia } = obtenerDiasDelMes(fechaActual.getFullYear(), fechaActual.getMonth() + 1);
-
-            // Crear las celdas vacías antes del primer día del mes (espacios en blanco)
-            for (let i = 0; i < primerDia; i++) {
-                const diaElemento = document.createElement('div');
-                diaElemento.classList.add('calendar-day');
-                calendario.appendChild(diaElemento);
-            }
-
-            // Crear las celdas con los días del mes
-            for (let i = 1; i <= numDias; i++) {
-                const diaElemento = document.createElement('div');
-                diaElemento.classList.add('calendar-day');
-                diaElemento.textContent = i;
-                diaElemento.setAttribute('data-day', i);
-
-                // Comprobar si hay un evento en ese día
-                const evento = eventos.find(e => e.dia === i);
-                if (evento) {
-                    // Aplicar la clase del evento según el tipo
-                    diaElemento.classList.add(estilosEventos[evento.tipo]);
-                }
-
-                // Añadir el evento hover para cambiar el fondo cuando el mouse esté sobre el día
-                diaElemento.addEventListener('mouseenter', () => {
-                    if (evento) {
-                        diaElemento.style.backgroundColor = getComputedStyle(diaElemento).backgroundColor;
-                    }
-                });
-
-                diaElemento.addEventListener('mouseleave', () => {
-                    diaElemento.style.backgroundColor = '';  // Restablecer el fondo cuando se deja de estar encima
-                });
-
-                calendario.appendChild(diaElemento);
-            }
-        }
-
-        // Llamar a la función para generar el calendario cuando se cargue la página
-        document.addEventListener('DOMContentLoaded', function () {
-            generarCalendario();
-
-            // Funcionalidad de scroll para mostrar las notificaciones solo cuando el usuario descienda
-            const notifications = document.getElementById('eventos');
-            window.addEventListener('scroll', function () {
-                const scrollTop = window.scrollY;
-                if (scrollTop > window.innerHeight * 0.8) {
-                    notifications.classList.add('visible');
-                } else {
-                    notifications.classList.remove('visible');
-                }
-            });
-        });
-
-    </script>
+    <script src="/TechSport/Recursos/JavaScript/Compartidos/script.js"></script>
 </body>
 
 </html>

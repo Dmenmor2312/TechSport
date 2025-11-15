@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TechSport - Inicio Entrenador</title>
-    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Compartidos/estilos.css" />
-     <link rel="stylesheet" href="/TechSport/Recursos/JavaScript/Compartidos/Entrenador-Profesional/estilos.css" />
+    <title>TechSport - Editar Calendario Entrenador</title>
 
-    <!-- Variables necesarias para colores -->
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Compartidos/estilos.css" />
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Compartidos/Entrenador-Profesional/calendario-editor.css" />
+
     <style>
         :root {
             --color-primary: #143b8d;
@@ -22,19 +22,15 @@
 
 <body data-rol="entrenador">
 
-    <!-- ========================= -->
-    <!--          HEADER           -->
-    <!-- ========================= -->
+    <!-- HEADER -->
     <header class="header">
         <div class="header-top">
-            <img src="/TechSport/Recursos/img/Nombre.png" alt="TechSport" class="logo-header" id="logo-interactivo">
+            <img src="/TechSport/Recursos/img/Nombre.png" class="logo-header" id="logo-interactivo" />
         </div>
 
         <nav class="navbar">
             <button class="hamburger" id="menuBtn">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
             </button>
 
             <ul class="nav-menu" id="navMenu">
@@ -47,36 +43,48 @@
         </nav>
     </header>
 
-    <!-- ========================= -->
-    <!--           MAIN            -->
-    <!-- ========================= -->
     <main>
+        <h1 class="titulo-editor">Editar Calendario</h1>
 
-        <!-- BOTÓN SOLO PARA ENTRENADOR Y PROFESIONAL -->
-        <button id="btn-nuevo-evento">Editar Calendario</button>
+        <!-- BOTÓN PARA AÑADIR EVENTO -->
+        <button id="btn-nuevo-evento" class="btn-primary">Nuevo Evento</button>
 
         <!-- CALENDARIO -->
         <div id="calendar"></div>
 
-        <!-- TARJETA DE EVENTOS PARA ANIMACIÓN -->
-        <div id="eventos" class="card">
-            <h2>Eventos</h2>
-            <p>Aquí aparecerán los eventos creados.</p>
+        <!-- MODAL -->
+        <div id="modal-evento" class="modal hidden">
+            <div class="modal-content">
+                <h2 id="titulo-modal">Nuevo Evento</h2>
+
+                <label>Nombre del evento:</label>
+                <input type="text" id="evento-nombre" />
+
+                <label>Fecha:</label>
+                <input type="date" id="evento-fecha" />
+
+                <label>Descripción:</label>
+                <textarea id="evento-descripcion"></textarea>
+
+                <div class="modal-buttons">
+                    <button id="guardar-evento" class="btn-primary">Guardar</button>
+                    <button id="cerrar-modal" class="btn-secondary">Cancelar</button>
+                </div>
+            </div>
         </div>
-        <!-- TABLÓN DE NOTIFICACIONES -->
+
+        <!-- NOTIFICACIONES -->
         <div id="notificaciones" class="notificaciones-card">
             <h2>Notificaciones</h2>
             <ul id="lista-notificaciones"></ul>
         </div>
     </main>
 
-    <!-- ========================= -->
-    <!--           FOOTER          -->
-    <!-- ========================= -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-logo">
-                <img src="/TechSport/Recursos/img/logo.png" alt="Logo Footer">
+                <img src="/TechSport/Recursos/img/logo.png" alt="Logo Footer" />
             </div>
             <h3>TechSport</h3>
             <p>Entrena mejor. Progresa más rápido.</p>
@@ -84,7 +92,6 @@
     </footer>
 
     <script src="/TechSport/Recursos/JavaScript/Compartidos/script.js"></script>
-    <script src="/TechSport/Recursos/JavaScript/Compartidos/Entrenador-Profesional/script.js"></script>
+    <script src="/TechSport/Recursos/JavaScript/Compartidos/Entrenador-Profesional/calendario-editor.js"></script>
 </body>
-
 </html>

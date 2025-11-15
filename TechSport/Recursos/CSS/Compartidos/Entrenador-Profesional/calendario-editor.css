@@ -1,0 +1,68 @@
+/* ============================= */
+/*      ESTILO EDITOR EVENTOS   */
+/* ============================= */
+
+.titulo-editor {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    margin: 20px auto;
+    display: block;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-dark);
+}
+
+.btn-secondary {
+    background: #ddd;
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    cursor: pointer;
+}
+
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.55);
+    z-index: 2000;
+}
+
+.hidden { display: none; }
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 450px;
+}
+
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: var(--radius);
+    border: 1px solid #ccc;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,306 @@
+/* =============================== */
+/* RESET */
+/* =============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* =============================== */
+/* BODY */
+/* =============================== */
+body {
+    background-color: #f7fafc;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* =============================== */
+/*              HEADER             */
+/* =============================== */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white;
+    padding-bottom: 5px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+    z-index: 1000;
+}
+
+.header-top {
+    width: 100%;
+    background: var(--color-primary);
+    padding: 10px 0;
+    text-align: center;
+}
+
+.logo-header {
+    height: 30px;
+    filter: brightness(0) invert(1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 6%;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    color: var(--color-dark);
+    font-weight: 600;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0px 4px 12px rgba(108, 99, 255, 0.4);
+}
+
+/* ⭐ BOTÓN ESPECIAL: INICIAR SESIÓN */
+.nav-login {
+    background: var(--color-primary);
+    color: white !important;
+    padding: 8px 18px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0px 3px 10px rgba(108, 99, 255, 0.25);
+}
+
+.nav-login:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 14px rgba(108, 99, 255, 0.4);
+}
+
+/* Hamburguesa */
+.hamburger {
+    display: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.bar {
+    width: 28px;
+    height: 3px;
+    background: var(--color-primary);
+    margin: 6px 0;
+    transition: var(--transition);
+}
+
+/* =============================== */
+/* MAIN */
+/* =============================== */
+main {
+    padding-top: 170px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* =============================== */
+/* CALENDARIO */
+/* =============================== */
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-top: 30px;
+}
+
+.calendar-header {
+    font-weight: bold;
+    background-color: #cbd5e0;
+    padding: 10px;
+    text-align: center;
+    color: #1a202c;
+    border-radius: 6px;
+}
+
+.calendar-day {
+    padding: 15px;
+    background-color: #e2e8f0;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 5px solid transparent;
+}
+
+.calendar-day:hover {
+    background-color: #d8dee9;
+}
+
+/* =============================== */
+/* TARJETAS DE EVENTOS */
+/* =============================== */
+.card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-top: 30px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =============================== */
+/* BOTÓN “Nuevo Evento” */
+/* =============================== */
+#btn-nuevo-evento {
+    background: #143b8d;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 25px;
+    display: none;
+}
+
+#btn-nuevo-evento:hover {
+    background: #0a1a49;
+}
+
+/* ================================= */
+/*      TABLÓN DE NOTIFICACIONES    */
+/* ================================= */
+
+.notificaciones-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 40px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.notificaciones-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.noti-list {
+    list-style: none;
+    margin-top: 15px;
+    padding: 0;
+}
+
+.noti-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #e2e8f0;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    border-left: 5px solid var(--color-primary);
+}
+
+/* ICONOS */
+.noti-icon {
+    font-size: 1.2rem;
+}
+
+/* COLORES POR TIPO */
+.noti-sistema { border-left-color: #4A5568; }
+.noti-evento { border-left-color: #3182CE; }
+.noti-mensaje { border-left-color: #38A169; }
+
+.noti-sistema .noti-icon { color: #4A5568; }
+.noti-evento .noti-icon { color: #3182CE; }
+.noti-mensaje .noti-icon { color: #38A169; }
+
+/* =============================== */
+/*              FOOTER             */
+/* =============================== */
+.footer {
+    background: var(--color-dark);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.footer-logo {
+    width: 65px;
+    background: white;
+    border-radius: 50%;
+    padding: 10px;
+    margin: 0 auto 15px;
+}
+
+.footer-logo img {
+    width: 100%;
+}
+
+.footer-container h3 {
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+}
+
+.footer-container p {
+    opacity: 0.8;
+}
+
+/* =============================== */
+/*           RESPONSIVE            */
+/* =============================== */
+@media (max-width: 768px) {
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        background: white;
+        padding: 40px 0;
+        flex-direction: column;
+        transition: var(--transition);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    /* Botón login móvil */
+    .nav-login {
+        width: 80%;
+        text-align: center;
+        margin-top: 10px;
+        padding: 15px 0;
+    }
+}
