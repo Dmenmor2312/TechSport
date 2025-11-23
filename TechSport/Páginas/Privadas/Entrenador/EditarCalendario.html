@@ -1,23 +1,10 @@
 <!DOCTYPE html>
 <html lang="es" data-theme="light">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TechSport - Editar Calendario Entrenador</title>
-
-    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Compartidos/estilos.css" />
-    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Compartidos/Entrenador-Profesional/calendario-editor.css" />
-
-    <style>
-        :root {
-            --color-primary: #143b8d;
-            --color-primary-dark: #0a1a49;
-            --color-dark: #1a202c;
-            --radius: 6px;
-            --transition: 0.3s ease;
-        }
-    </style>
+    <title>TechSport - Editar Calendario</title>
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Compartidos/Entrenador-Profesional/calendario-editor.css">
 </head>
 
 <body data-rol="entrenador">
@@ -29,51 +16,55 @@
         </div>
 
         <nav class="navbar">
-            <button class="hamburger" id="menuBtn">
-                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-            </button>
-
             <ul class="nav-menu" id="navMenu">
                 <li><a class="nav-link" href="/TechSport/Páginas/Privadas/Entrenador/inicio.html">Inicio</a></li>
                 <li><a class="nav-link" href="#">Enviar Mensaje</a></li>
                 <li><a class="nav-link" href="#">Bandeja de Entrada</a></li>
                 <li><a class="nav-link" href="#">Perfil</a></li>
-                <li><a class="nav-link nav-login" href="#">Cerrar sesión</a></li>
             </ul>
         </nav>
     </header>
-
     <main>
-        <h1 class="titulo-editor">Editar Calendario</h1>
+        <div class="profesional-header">
+            <div class="profesional-titulo">Editor de Calendario</div>
+            <div class="profesional-subtitulo">Navega por los meses y gestiona eventos</div>
+        </div>
 
-        <!-- BOTÓN PARA AÑADIR EVENTO -->
-        <button id="btn-nuevo-evento" class="btn-primary">Nuevo Evento</button>
-
-        <!-- CALENDARIO -->
-        <div id="calendar"></div>
-
-        <!-- MODAL -->
-        <div id="modal-evento" class="modal hidden">
-            <div class="modal-content">
-                <h2 id="titulo-modal">Nuevo Evento</h2>
-
-                <label>Nombre del evento:</label>
-                <input type="text" id="evento-nombre" />
-
-                <label>Fecha:</label>
-                <input type="date" id="evento-fecha" />
-
-                <label>Descripción:</label>
-                <textarea id="evento-descripcion"></textarea>
-
-                <div class="modal-buttons">
-                    <button id="guardar-evento" class="btn-primary">Guardar</button>
-                    <button id="cerrar-modal" class="btn-secondary">Cancelar</button>
-                </div>
+        <div class="leyenda-colores">
+            <div class="color-item">
+                <div class="color-muestra" style="background: #bee3f8; border-left-color: #2b6cb0;"></div>
+                <span>Reunión</span>
+            </div>
+            <div class="color-item">
+                <div class="color-muestra" style="background: #c6f6d5; border-left-color: #276749;"></div>
+                <span>Entrenamiento</span>
+            </div>
+            <div class="color-item">
+                <div class="color-muestra" style="background: #fed7d7; border-left-color: #c53030;"></div>
+                <span>Partido</span>
+            </div>
+            <div class="color-item">
+                <div class="color-muestra" style="background: #e9d8fd; border-left-color: #6b46c1;"></div>
+                <span>Fisioterapia</span>
+            </div>
+            <div class="color-item">
+                <div class="color-muestra" style="background: #fefcbf; border-left-color: #d69e2e;"></div>
+                <span>Nutrición</span>
+            </div>
+            <div class="color-item">
+                <div class="color-muestra" style="background: #fed7d7; border-left-color: #dd6b20;"></div>
+                <span>Psicología</span>
             </div>
         </div>
 
-        <!-- NOTIFICACIONES -->
+        <!-- Los controles de navegación se generan automáticamente -->
+        <div id="calendar"></div>
+
+        <div id="eventos" class="card">
+            <h2>Eventos del Mes</h2>
+            <p>Aquí aparecerán los eventos del mes actual.</p>
+        </div>
+
         <div id="notificaciones" class="notificaciones-card">
             <h2>Notificaciones</h2>
             <ul id="lista-notificaciones"></ul>
@@ -91,7 +82,6 @@
         </div>
     </footer>
 
-    <script src="/TechSport/Recursos/JavaScript/Compartidos/script.js"></script>
     <script src="/TechSport/Recursos/JavaScript/Compartidos/Entrenador-Profesional/calendario-editor.js"></script>
 </body>
 </html>

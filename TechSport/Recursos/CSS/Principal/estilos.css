@@ -1,32 +1,21 @@
 /* =============================== */
-/*            VARIABLES            */
-/* =============================== */
-:root {
-    --color-primary: #6C63FF;
-    --color-primary-dark: #5548FF;
-    --color-accent: #FF6584;
-    --color-bg: #F5F7FF;
-    --color-text: #2A2A2A;
-    --color-dark: #1F1B3A;
-
-    --radius: 12px;
-    --transition: 0.3s ease;
-}
-
-/* =============================== */
-/*           GLOBAL STYLE          */
+/* RESET */
 /* =============================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* =============================== */
+/* BODY */
+/* =============================== */
 body {
-    font-family: "Poppins", sans-serif;
-    background: var(--color-bg);
-    color: var(--color-text);
-    line-height: 1.6;
+    background-color: #f7fafc;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 /* =============================== */
@@ -38,7 +27,7 @@ body {
     width: 100%;
     background: white;
     padding-bottom: 5px;
-    box-shadow: 0px 4px 20px rgba(0,0,0,0.08);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
     z-index: 1000;
 }
 
@@ -82,7 +71,6 @@ body {
     box-shadow: 0px 4px 12px rgba(108, 99, 255, 0.4);
 }
 
-/* ⭐ BOTÓN ESPECIAL: INICIAR SESIÓN */
 .nav-login {
     background: var(--color-primary);
     color: white !important;
@@ -116,100 +104,143 @@ body {
 }
 
 /* =============================== */
-/*              HERO               */
+/* MAIN */
 /* =============================== */
-.contact-hero {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-    color: white;
-    padding: 130px 10%;
+main {
+    padding-top: 170px;
+    max-width: 1200px;
+    margin: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* =============================== */
+/* CALENDARIO */
+/* =============================== */
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-top: 30px;
+}
+
+.calendar-header {
+    font-weight: bold;
+    background-color: #cbd5e0;
+    padding: 10px;
     text-align: center;
-    margin-top: 80px;
+    color: #1a202c;
+    border-radius: 6px;
 }
 
-.contact-hero h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
-}
-
-.contact-hero p {
-    font-size: 1.15rem;
-    margin-top: 10px;
-    opacity: 0.95;
-}
-
-/* =============================== */
-/*            FORMULARIO           */
-/* =============================== */
-.contact-container {
-    max-width: 750px;
-    margin: 0 auto;
-    padding: 60px 6%;
-}
-
-.contact-form {
-    background: white;
-    padding: 45px;
-    border-radius: var(--radius);
-    box-shadow: 0px 10px 30px rgba(0,0,0,0.08);
-    transition: var(--transition);
-}
-
-.contact-form:hover {
-    transform: translateY(-4px);
-}
-
-.form-group {
-    margin-bottom: 25px;
-}
-
-label {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-dark);
-    margin-bottom: 7px;
-    display: block;
-}
-
-input, textarea, select {
-    width: 100%;
-    padding: 14px;
-    border: 2px solid #D8D9EE;
-    border-radius: var(--radius);
-    font-size: 1rem;
-    transition: var(--transition);
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 8px rgba(108, 99, 255, 0.4);
-}
-
-textarea {
-    resize: vertical;
-    min-height: 150px;
-}
-
-/* Botón */
-.submit-btn {
-    width: 100%;
+.calendar-day {
     padding: 15px;
-    font-size: 1.2rem;
-    background: var(--color-primary);
-    color: white;
-    border: none;
-    border-radius: var(--radius);
+    background-color: #e2e8f0;
+    border-radius: 6px;
+    text-align: center;
     cursor: pointer;
-    transition: var(--transition);
-    font-weight: 600;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 5px solid transparent;
+    position: relative;
 }
 
-.submit-btn:hover {
-    background: var(--color-primary-dark);
-    transform: translateY(-3px);
-    box-shadow: 0px 4px 16px rgba(108, 99, 255, 0.4);
+.calendar-day:hover {
+    background-color: #d8dee9;
 }
+
+/* =============================== */
+/* TARJETAS DE EVENTOS */
+/* =============================== */
+.card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-top: 30px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =============================== */
+/* BOTÓN "Nuevo Evento" */
+/* =============================== */
+#btn-nuevo-evento{
+    background: #143b8d;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 25px;
+    display: none;
+}
+
+#btn-nuevo-evento:hover {
+    background: #0a1a49;
+}
+
+/* ================================= */
+/*      TABLÓN DE NOTIFICACIONES    */
+/* ================================= */
+
+.notificaciones-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 40px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.notificaciones-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.noti-list {
+    list-style: none;
+    margin-top: 15px;
+    padding: 0;
+}
+
+.noti-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #e2e8f0;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    border-left: 5px solid var(--color-primary);
+}
+
+/* ICONOS */
+.noti-icon {
+    font-size: 1.2rem;
+}
+
+/* COLORES POR TIPO */
+.noti-sistema { border-left-color: #4A5568; }
+.noti-evento { border-left-color: #3182CE; }
+.noti-mensaje { border-left-color: #38A169; }
+
+.noti-sistema .noti-icon { color: #4A5568; }
+.noti-evento .noti-icon { color: #3182CE; }
+.noti-mensaje .noti-icon { color: #38A169; }
 
 /* =============================== */
 /*              FOOTER             */
@@ -248,7 +279,9 @@ textarea {
 /* =============================== */
 @media (max-width: 768px) {
 
-    .hamburger { display: block; }
+    .hamburger {
+        display: block;
+    }
 
     .nav-menu {
         position: fixed;
@@ -261,7 +294,9 @@ textarea {
         transition: var(--transition);
     }
 
-    .nav-menu.active { left: 0; }
+    .nav-menu.active {
+        left: 0;
+    }
 
     /* Botón login móvil */
     .nav-login {
