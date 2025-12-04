@@ -1,0 +1,277 @@
+/* =============================
+   Contenedor del jugador
+============================= */
+.header-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* =============================
+   Camiseta del jugador
+============================= */
+.player-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.camiseta {
+    position: relative;
+    width: 100px;
+    height: 140px;
+    border-radius: 20px 20px 15px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: 'Arial Black', sans-serif;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Hombros */
+.camiseta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    border-radius: 20px 20px 0 0;
+}
+
+/* Colores según posición */
+.camiseta.portero {
+    background: #bee3f8;
+    border: 3px solid #2b6cb0;
+}
+
+.camiseta.portero::before {
+    background: #2b6cb0;
+}
+
+.camiseta.defensa {
+    background: #c6f6d5;
+    border: 3px solid #276749;
+}
+
+.camiseta.defensa::before {
+    background: #276749;
+}
+
+.camiseta.mc {
+    background: #fed7d7;
+    color: #c53030;
+    border: 3px solid #c53030;
+}
+
+.camiseta.mc::before {
+    background: #c53030;
+}
+
+.camiseta.delantero {
+    background: #e9d8fd;
+    color: #6b46c1;
+    border: 3px solid #6b46c1;
+}
+
+.camiseta.delantero::before {
+    background: #6b46c1;
+}
+
+.camiseta .dorsal {
+    z-index: 2;
+}
+
+/* Posición debajo de la camiseta */
+.posicion {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 5px;
+    color: #ffffff;
+}
+
+/* =============================
+   Leyenda de colores
+============================= */
+.leyenda-colores {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.color-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.color-muestra {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border-left: 5px solid #000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* =============================
+   Paneles generales
+============================= */
+.panel {
+    background: #182648;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    color: #ffffff;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.panel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.panel h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #4ade80;
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+/* =============================
+   Estadísticas físicas
+============================= */
+.stats-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.stat-block {
+    flex: 1;
+    min-width: 100px;
+}
+
+.stat-block span {
+    opacity: 0.85;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.bar {
+    background: rgba(255, 255, 255, 0.08);
+    height: 14px;
+    border-radius: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.bar .fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #4ade80, #22c55e);
+    border-radius: 10px;
+    transition: width 1.2s ease;
+}
+
+.more-info {
+    margin-top: 15px;
+    opacity: 0.85;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* =============================
+   Estadísticas de temporada y equipo
+============================= */
+.stats-temporada {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.item-t {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+    color: #ffffff;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.item-t span {
+    display: block;
+    opacity: 0.7;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.item-t strong {
+    font-size: 18px;
+    color: #4ade80;
+}
+
+.item-t:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* =============================
+   Partidos disputados
+============================= */
+.partido-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.partido-card h3 {
+    margin-bottom: 5px;
+    color: #4ade80;
+}
+
+.partido-card .fecha {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-bottom: 10px;
+}
+
+.partido-card .line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.partido-card .line strong {
+    color: #facc15;
+}
+
+/* =============================
+   Responsive
+============================= */
+@media (max-width: 768px) {
+    .stats-row {
+        flex-direction: column;
+    }
+}

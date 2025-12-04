@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Entrenador | TechSport</title>
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/HeaderFooter/estilos.css">
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Login/estilos.css">
+
+    <style>
+        /* GARANTIZAR que el body use flexbox correctamente */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            flex-shrink: 0;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .footer {
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-top">
+            <img src="/TechSport/Recursos/img/Nombre.png" class="logo-header" id="logo-interactivo" />
+        </div>
+
+        <nav class="navbar">
+            <ul class="nav-menu">
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/Principal/inicio.html">Inicio</a></li>
+                <li><a class="nav-link"
+                        href="/TechSport/Páginas/Publica/Principal/caracteristicas.html">Características</a></li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/Principal/contacto.html">Contacto</a></li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/EleccionUsuario/eleccion.html">Iniciar
+                        sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <div class="login-wrapper">
+            <div class="login-container">
+                <div class="login-card">
+                    <h2>Acceso Entrenador</h2>
+
+                    <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+                    <form id="loginForm" class="login-form" method="post" novalidate>
+                        <div class="form-group">
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+                            <div id="emailError" class="input-error"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <input type="password" id="password" name="password" placeholder="••••••••" required>
+                            <div id="passwordError" class="input-error"></div>
+                        </div>
+
+                        <button type="submit">Ingresar</button>
+                    </form>
+
+                    <div class="register-section">
+                        <p>¿No tienes cuenta? <a href="/TechSport/Páginas/Publica/Entrenador/registro.html">Regístrate
+                                aquí</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="/TechSport/Recursos/img/Logo.png" alt="TechSport">
+                </div>
+
+                <h3>TechSport</h3>
+                <p>Gestión Deportiva Inteligente</p>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 TechSport. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
+<!-- SCRIPTS -->
+<script src="/TechSport/Recursos/JavaScript/Login/scriptLogin.js"></script>
+<script>
+    // JavaScript corregido
+    function limpiarErrores() {
+        // Limpiar mensajes de error
+        document.querySelectorAll('.input-error').forEach(el => {
+            el.textContent = '';
+        });
+
+        // Limpiar clases de error
+        document.querySelectorAll('input').forEach(input => {
+            input.classList.remove('error');
+        });
+
+        // Ocultar mensaje general de error
+        const errorMessage = document.getElementById('errorMessage');
+        if (errorMessage) errorMessage.style.display = 'none';
+    }
+
+    function mostrarErrorCampo(campoId, mensaje) {
+        const campo = document.getElementById(campoId);
+        const errorElement = document.getElementById(`${campoId}Error`);
+
+        if (campo && errorElement) {
+            campo.classList.add('error');
+            errorElement.textContent = mensaje;
+        }
+    }
+
+    function validarEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+
+    function validarFormulario(email, password) {
+        let valido = true;
+
+        if (!email) {
+            mostrarErrorCampo('email', 'El correo electrónico es requerido');
+            valido = false;
+        } else if (!validarEmail(email)) {
+            mostrarErrorCampo('email', 'Ingrese un correo electrónico válido');
+            valido = false;
+        }
+
+        if (!password) {
+            mostrarErrorCampo('password', 'La contraseña es requerida');
+            valido = false;
+        } else if (password.length < 8) {
+            mostrarErrorCampo('password', 'La contraseña debe tener al menos 8 caracteres');
+            valido = false;
+        }
+
+        return valido;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('errorMessage');
+
+        if (loginForm) {
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                limpiarErrores();
+
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value.trim();
+
+                // Validación básica del lado del cliente
+                if (!validarFormulario(email, password)) {
+                    return;
+                }
+
+                // Deshabilitar botón y mostrar loading
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Ingresando...';
+                submitBtn.disabled = true;
+
+                // Enviar datos al servidor
+                const formData = new FormData(loginForm);
+
+                fetch('/TechSport/Recursos/PHP/Entrenador/login.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+                        if (!response.ok) throw new Error('Error en la respuesta del servidor');
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            window.location.href = '/TechSport/Páginas/Privadas/Entrenador/inicio.html';
+                        } else {
+                            errorMessage.textContent = data.message || 'Correo electrónico o contraseña incorrectos';
+                            errorMessage.style.display = 'block';
+
+                            // Restaurar botón
+                            submitBtn.textContent = originalText;
+                            submitBtn.disabled = false;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        errorMessage.textContent = 'Error al conectar con el servidor';
+                        errorMessage.style.display = 'block';
+
+                        // Restaurar botón
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    });
+            });
+        }
+    });
+</script>
+</body>
+
+</html>

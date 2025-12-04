@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechSport - Informe Jugador</title>
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Compartidos/estilos.css" />
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Jugador/estadisticas.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body data-rol="jugador">
+
+    <header class="header">
+        <div class="header-top">
+            <img src="/TechSport/Recursos/img/Nombre.png" class="logo-header" id="logo-interactivo" />
+        </div>
+        <nav class="navbar">
+            <ul class="nav-menu" id="navMenu">
+                <li><a class="nav-link" href="/TechSport/Páginas/Privadas/Jugador/inicio.html">Inicio</a></li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Privadas/Jugador/Estadisticas.php">Estadísticas</a>
+                </li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Privadas/Jugador/Equipo.html">Equipo</a></li>
+                <li><a class="nav-link" href="#">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="header-player">
+
+            <!-- Camiseta del jugador -->
+            <div class="player-card">
+                <div class="camiseta <?= strtolower($jugador['posicion']) ?>">
+                    <span class="dorsal"><?= $jugador['dorsal'] ?></span>
+                </div>
+                <p class="posicion"><?= $jugador['posicion'] ?></p>
+            </div>
+
+            <!-- Leyenda de colores -->
+            <div class="leyenda-colores">
+                <div class="color-item">
+                    <div class="color-muestra" style="background:#bee3f8; border-left-color:#2b6cb0;"></div><span>Portero</span>
+                </div>
+                <div class="color-item">
+                    <div class="color-muestra" style="background:#c6f6d5; border-left-color:#276749;"></div><span>Defensa</span>
+                </div>
+                <div class="color-item">
+                    <div class="color-muestra" style="background:#fed7d7; border-left-color:#c53030;"></div><span>Centrocampista</span>
+                </div>
+                <div class="color-item">
+                    <div class="color-muestra" style="background:#e9d8fd; border-left-color:#6b46c1;"></div><span>Delantero</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= Estadísticas físicas ================= -->
+        <section class="panel">
+            <h2>Rendimiento Físico</h2>
+            <div class="stats-row">
+                <div class="stat-block" data-value="<?= $fisico['velocidad'] ?>"><span>Velocidad</span>
+                    <div class="bar">
+                        <div class="fill"></div>
+                    </div><strong><?= $fisico['velocidad'] ?></strong>
+                </div>
+                <div class="stat-block" data-value="<?= $fisico['fuerza'] ?>"><span>Fuerza</span>
+                    <div class="bar">
+                        <div class="fill"></div>
+                    </div><strong><?= $fisico['fuerza'] ?></strong>
+                </div>
+                <div class="stat-block" data-value="<?= $fisico['resistencia'] ?>"><span>Resistencia</span>
+                    <div class="bar">
+                        <div class="fill"></div>
+                    </div><strong><?= $fisico['resistencia'] ?></strong>
+                </div>
+            </div>
+            <div class="more-info">
+                <div>Peso: <strong><?= $fisico['peso'] ?> kg</strong></div>
+                <div>Altura: <strong><?= $fisico['altura'] ?> m</strong></div>
+            </div>
+        </section>
+
+        <!-- ================= Estadísticas generales de temporada ================= -->
+        <section class="panel">
+            <h2>Estadísticas de la Temporada Actual:</h2>
+            <div class="stats-temporada">
+                <div class="item-t"><span>Goles</span><strong><?= $totales['goles'] ?></strong></div>
+                <div class="item-t"><span>Asistencias</span><strong><?= $totales['asistencias'] ?></strong></div>
+                <div class="item-t"><span>Amarillas</span><strong><?= $totales['amarillas'] ?></strong></div>
+                <div class="item-t"><span>Rojas</span><strong><?= $totales['rojas'] ?></strong></div>
+            </div>
+        </section>
+
+        <!-- ================= Estadísticas del equipo actual ================= -->
+        <section class="panel">
+            <h2>Estadísticas Equipo Actual: <?= $jugador['equipo_actual_nombre'] ?></h2>
+            <div class="stats-temporada">
+                <div class="item-t"><span>Partidos</span><strong><?= $club_actual_stats['partidos_jugados'] ?></strong></div>
+                <div class="item-t"><span>Minutos</span><strong><?= $club_actual_stats['minutos_jugados'] ?></strong></div>
+            </div>
+        </section>
+
+        <!-- ================= Partidos disputados ================= -->
+        <section class="panel">
+            <h2>Partidos Disputados</h2>
+            <?php foreach ($partidos as $p): ?>
+                <div class="partido-card">
+                    <h3><?= $p['equipo'] ?> - <?= $p['titulo'] ?></h3>
+                    <p class="fecha"><?= date("d/m/Y", strtotime($p['fecha'])) ?></p>
+                    <div class="line"><span>Goles:</span> <strong><?= $p['goles'] ?></strong></div>
+                    <div class="line"><span>Asistencias:</span> <strong><?= $p['asistencias'] ?></strong></div>
+                    <div class="line"><span>Minutos:</span> <strong><?= $p['minutos_jugados'] ?></strong></div>
+                </div>
+            <?php endforeach; ?>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="/TechSport/Recursos/img/Logo.png" alt="TechSport">
+                </div>
+                <h3>TechSport</h3>
+                <p>Gestión Deportiva Inteligente</p>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2025 TechSport.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/TechSport/Recursos/JavaScript/Compartidos/Entrenador-Profesional/calendario-editor.js"></script>
+    <script>
+
+    </script>
+
+</body>
+
+</html>

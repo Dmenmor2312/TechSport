@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Jugador | TechSport</title>
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Registro/estilos.css">
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/HeaderFooter/estilos.css">
+
+</head>
+
+<body>s
+    <header class="header">
+        <div class="header-top">
+            <img src="/TechSport/Recursos/img/Nombre.png" class="logo-header" id="logo-interactivo" />
+        </div>
+
+        <nav class="navbar">
+            <ul class="nav-menu">
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/Principal/inicio.html">Inicio</a></li>
+                <li><a class="nav-link"
+                        href="/TechSport/Páginas/Publica/Principal/caracteristicas.html">Características</a></li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/Principal/contacto.html">Contacto</a></li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/EleccionUsuario/eleccion.html">Iniciar
+                        sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-content">
+        <div class="register-wrapper">
+            <div class="register-container">
+                <div class="registro-card">
+                    <h2>Registro Jugador</h2>
+
+                    <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+                    <form id="registroForm" class="registro-form" novalidate>
+                    <div class="registro-group">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez">
+                        <div id="nombreError" class="registro-error"></div>
+                    </div>
+
+                    <div class="registro-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" placeholder="ejemplo@dominio.com">
+                        <div id="emailError" class="registro-error"></div>
+                    </div>
+
+                    <div class="registro-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" placeholder="••••••••">
+                        <div id="passwordError" class="registro-error"></div>
+                    </div>
+
+                    <div class="registro-group">
+                        <label for="confirmPassword">Confirmar contraseña</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••">
+                        <div id="confirmPasswordError" class="registro-error"></div>
+                    </div>
+
+                    <button type="submit" class="registro-btn">Registrarse</button>
+                </form>
+
+                    <div class="register-section">
+                        <p>¿Tienes cuenta? <a href="/TechSport/Páginas/Publica/Jugador/login.html">Inicia Sesión
+                                aquí</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="/TechSport/Recursos/img/Logo.png" alt="TechSport">
+                </div>
+
+                <h3>TechSport</h3>
+                <p>Gestión Deportiva Inteligente</p>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 TechSport. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('registroForm');
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                resetErrors();
+
+                const nombre = document.getElementById('nombre').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+
+                let isValid = true;
+
+                if (nombre.length < 3) {
+                    showError('nombreError', 'Mínimo 3 caracteres', 'nombre');
+                    isValid = false;
+                }
+
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    showError('emailError', 'Email no válido', 'email');
+                    isValid = false;
+                }
+
+                if (password.length < 8) {
+                    showError('passwordError', 'Mínimo 8 caracteres', 'password');
+                    isValid = false;
+                }
+
+                if (password !== confirmPassword) {
+                    showError('confirmPasswordError', 'Las contraseñas no coinciden', 'confirmPassword');
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    alert('Registro de jugador exitoso');
+                    form.reset();
+                }
+            });
+
+            function resetErrors() {
+                document.querySelectorAll('.registro-error').forEach(el => {
+                    el.textContent = '';
+                });
+                document.querySelectorAll('.input-error').forEach(el => {
+                    el.classList.remove('input-error');
+                });
+            }
+
+            function showError(errorId, message, inputId) {
+                const errorElement = document.getElementById(errorId);
+                const inputElement = document.getElementById(inputId);
+
+                if (errorElement) errorElement.textContent = message;
+                if (inputElement) inputElement.classList.add('input-error');
+            }
+        });
+
+    </script>
+</body>
+
+</html>

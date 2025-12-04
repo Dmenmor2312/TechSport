@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Jugador | TechSport</title>
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/HeaderFooter/estilos.css">
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Login/estilos.css">
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-top">
+            <img src="/TechSport/Recursos/img/Nombre.png" class="logo-header" id="logo-interactivo" />
+        </div>
+
+        <nav class="navbar">
+            <ul class="nav-menu">
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/Principal/inicio.html">Inicio</a></li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/Principal/caracteristicas.html">Características</a></li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/Principal/contacto.html">Contacto</a></li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/EleccionUsuario/eleccion.html">Iniciar sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-content">
+            <div class="login-wrapper">
+                <div class="login-container">
+                    <div class="login-card">
+                        <h2>Acceso Jugador</h2>
+
+                        <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+                        <form id="loginForm" class="login-form" method="post" novalidate>
+                            <div class="form-group">
+                                <label for="email">Correo electrónico</label>
+                                <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+                                <div id="emailError" class="input-error"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Contraseña</label>
+                                <input type="password" id="password" name="password" placeholder="••••••••" required>
+                                <div id="passwordError" class="input-error"></div>
+                            </div>
+
+                            <button type="submit">Ingresar</button>
+                        </form>
+
+                        <div class="register-section">
+                            <p>¿No tienes cuenta? <a
+                                    href="/TechSport/Páginas/Publica/Jugador/registro.html">Regístrate aquí</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="/TechSport/Recursos/img/Logo.png" alt="TechSport">
+                </div> 
+
+                <h3>TechSport</h3>
+                <p>Gestión Deportiva Inteligente</p>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 TechSport. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="/TechSport/Recursos/JavaScript/Login/scriptLogin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.getElementById('loginForm');
+            const errorMessage = document.getElementById('errorMessage');
+
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                limpiarErrores();
+
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value.trim();
+
+                // Validación básica del lado del cliente
+                if (!validarFormulario(email, password)) {
+                    return;
+                }
+
+                // Enviar datos al servidor
+                const formData = new FormData(loginForm);
+
+                fetch('/TechSport/Recursos/PHP/Jugador/login.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+                        if (!response.ok) throw new Error('Error en la respuesta del servidor');
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            window.location.href = '/TechSport/Páginas/Privadas/Jugador/inicio.html';
+                        } else {
+                            errorMessage.textContent = data.message || 'Correo electrónico o contraseña incorrectos';
+                            errorMessage.style.display = 'block';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        errorMessage.textContent = 'Error al conectar con el servidor';
+                        errorMessage.style.display = 'block';
+                    });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let fechaActual = new Date();
     let eventos = JSON.parse(localStorage.getItem('eventosProfesional')) || [];
 
-    // Elementos del DOM
+    // Elementos del DOM - con verificaciones de existencia
     const calendarEl = document.getElementById('calendar');
     const btnNuevoEvento = document.getElementById('btn-nuevo-evento');
     const eventosContainer = document.getElementById('eventos');
@@ -18,10 +18,12 @@ document.addEventListener('DOMContentLoaded', function () {
                             document.body.classList.contains('inicio') ||
                             !window.location.pathname.includes('admin');
 
-    // Inicializar el calendario
-    inicializarCalendario();
+    // Inicializar el calendario solo si existe el elemento
+    if (calendarEl) {
+        inicializarCalendario();
+    }
 
-    // Configurar eventos - solo si NO estamos en pantalla de inicio
+    // Configurar eventos - solo si NO estamos en pantalla de inicio y el botón existe
     if (!esPantallaInicio && btnNuevoEvento) {
         btnNuevoEvento.addEventListener('click', mostrarFormularioNuevoEvento);
     } else if (btnNuevoEvento) {
@@ -29,30 +31,43 @@ document.addEventListener('DOMContentLoaded', function () {
         btnNuevoEvento.style.display = 'none';
     }
 
-    // Menú hamburguesa
-    menuBtn.addEventListener('click', function () {
-        navMenu.classList.toggle('active');
-    });
+    // Menú hamburguesa - solo si los elementos existen
+    if (menuBtn && navMenu) {
+        menuBtn.addEventListener('click', function () {
+            navMenu.classList.toggle('active');
+        });
+    }
 
     // Funciones principales
     function inicializarCalendario() {
+        // Verificar que calendarEl existe antes de usarlo
+        if (!calendarEl) return;
+
         // Generar estructura del calendario
         generarCalendario(fechaActual);
 
-        // Mostrar eventos del mes actual
-        mostrarEventosDelMes();
+        // Mostrar eventos del mes actual solo si el contenedor existe
+        if (eventosContainer) {
+            mostrarEventosDelMes();
+        }
 
-        // Mostrar notificaciones
-        mostrarNotificaciones();
+        // Mostrar notificaciones solo si el contenedor existe
+        if (listaNotificaciones) {
+            mostrarNotificaciones();
+        }
     }
 
     function generarCalendario(fecha) {
+        // Verificar que calendarEl existe
+        if (!calendarEl) return;
+
         const año = fecha.getFullYear();
         const mes = fecha.getMonth();
 
         // Crear contenedor del calendario
         calendarEl.innerHTML = '';
 
+        // Resto del código de generarCalendario permanece igual...
         // Crear encabezado con navegación
         const encabezado = document.createElement('div');
         encabezado.className = 'calendario-encabezado';
@@ -170,6 +185,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function mostrarEventosDelMes() {
+        // Verificar que el contenedor existe
+        if (!eventosContainer) return;
+
         const año = fechaActual.getFullYear();
         const mes = fechaActual.getMonth();
 
@@ -240,15 +258,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 const btnEditar = itemEvento.querySelector('.btn-editar');
                 const btnEliminar = itemEvento.querySelector('.btn-eliminar');
 
-                btnEditar.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    editarEvento(evento.id);
-                });
+                if (btnEditar) {
+                    btnEditar.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        editarEvento(evento.id);
+                    });
+                }
                 
-                btnEliminar.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    eliminarEvento(evento.id);
-                });
+                if (btnEliminar) {
+                    btnEliminar.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        eliminarEvento(evento.id);
+                    });
+                }
 
                 // Hacer clickeable el evento para ver detalles
                 itemEvento.addEventListener('click', () => mostrarDetallesCompletosEvento(evento));
@@ -445,42 +467,60 @@ document.addEventListener('DOMContentLoaded', function () {
         const form = document.getElementById('form-nuevo-evento');
         const btnCancelar = document.getElementById('btn-cancelar');
 
-        form.addEventListener('submit', guardarNuevoEvento);
-        btnCancelar.addEventListener('click', () => document.body.removeChild(modal));
+        if (form) {
+            form.addEventListener('submit', guardarNuevoEvento);
+        }
+        
+        if (btnCancelar) {
+            btnCancelar.addEventListener('click', () => {
+                if (document.body.contains(modal)) {
+                    document.body.removeChild(modal);
+                }
+            });
+        }
 
         // Cerrar modal al hacer clic fuera
         modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
+            if (e.target === modal && document.body.contains(modal)) {
                 document.body.removeChild(modal);
             }
         });
 
         // Poner foco en el primer campo
         setTimeout(() => {
-            document.getElementById('titulo').focus();
+            const tituloInput = document.getElementById('titulo');
+            if (tituloInput) {
+                tituloInput.focus();
+            }
         }, 100);
     }
 
     function guardarNuevoEvento(e) {
         e.preventDefault();
 
-        const titulo = document.getElementById('titulo').value;
-        const fecha = document.getElementById('fecha').value;
-        const horaInicio = document.getElementById('hora-inicio').value;
-        const horaFin = document.getElementById('hora-fin').value;
+        const titulo = document.getElementById('titulo');
+        const fecha = document.getElementById('fecha');
+        const horaInicio = document.getElementById('hora-inicio');
+        const horaFin = document.getElementById('hora-fin');
+
+        // Verificar que los elementos existen
+        if (!titulo || !fecha || !horaInicio || !horaFin) {
+            alert('❌ Error al guardar el evento');
+            return;
+        }
 
         // Validar que la hora fin sea mayor que la hora inicio
-        if (horaInicio >= horaFin) {
+        if (horaInicio.value >= horaFin.value) {
             alert('❌ La hora de fin debe ser posterior a la hora de inicio');
             return;
         }
 
         const nuevoEvento = {
             id: 'evento_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
-            titulo: titulo,
-            fecha: fecha,
-            horaInicio: horaInicio,
-            horaFin: horaFin,
+            titulo: titulo.value,
+            fecha: fecha.value,
+            horaInicio: horaInicio.value,
+            horaFin: horaFin.value,
             tipo: document.getElementById('tipo').value,
             descripcion: document.getElementById('descripcion').value,
             fechaCreacion: new Date().toISOString()
@@ -491,11 +531,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Cerrar modal y actualizar vista
         const modal = document.querySelector('.modal');
-        document.body.removeChild(modal);
+        if (modal && document.body.contains(modal)) {
+            document.body.removeChild(modal);
+        }
 
-        generarCalendario(fechaActual);
-        mostrarEventosDelMes();
-        mostrarNotificaciones();
+        if (calendarEl) {
+            generarCalendario(fechaActual);
+        }
+        
+        if (eventosContainer) {
+            mostrarEventosDelMes();
+        }
+        
+        if (listaNotificaciones) {
+            mostrarNotificaciones();
+        }
 
         alert('✅ Evento guardado correctamente');
     }
@@ -570,12 +620,21 @@ document.addEventListener('DOMContentLoaded', function () {
         const form = document.getElementById('form-editar-evento');
         const btnCancelar = document.getElementById('btn-cancelar-editar');
 
-        form.addEventListener('submit', (e) => actualizarEvento(e, id));
-        btnCancelar.addEventListener('click', () => document.body.removeChild(modal));
+        if (form) {
+            form.addEventListener('submit', (e) => actualizarEvento(e, id));
+        }
+        
+        if (btnCancelar) {
+            btnCancelar.addEventListener('click', () => {
+                if (document.body.contains(modal)) {
+                    document.body.removeChild(modal);
+                }
+            });
+        }
 
         // Cerrar modal al hacer clic fuera
         modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
+            if (e.target === modal && document.body.contains(modal)) {
                 document.body.removeChild(modal);
             }
         });
@@ -591,11 +650,17 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const horaInicio = document.getElementById('hora-inicio-editar').value;
-        const horaFin = document.getElementById('hora-fin-editar').value;
+        const horaInicio = document.getElementById('hora-inicio-editar');
+        const horaFin = document.getElementById('hora-fin-editar');
+
+        // Verificar que los elementos existen
+        if (!horaInicio || !horaFin) {
+            alert('❌ Error al actualizar el evento');
+            return;
+        }
 
         // Validar que la hora fin sea mayor que la hora inicio
-        if (horaInicio >= horaFin) {
+        if (horaInicio.value >= horaFin.value) {
             alert('❌ La hora de fin debe ser posterior a la hora de inicio');
             return;
         }
@@ -604,8 +669,8 @@ document.addEventListener('DOMContentLoaded', function () {
             ...eventos[eventoIndex],
             titulo: document.getElementById('titulo-editar').value,
             fecha: document.getElementById('fecha-editar').value,
-            horaInicio: horaInicio,
-            horaFin: horaFin,
+            horaInicio: horaInicio.value,
+            horaFin: horaFin.value,
             tipo: document.getElementById('tipo-editar').value,
             descripcion: document.getElementById('descripcion-editar').value,
             fechaModificacion: new Date().toISOString()
@@ -615,11 +680,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Cerrar modal y actualizar vista
         const modal = document.querySelector('.modal');
-        document.body.removeChild(modal);
+        if (modal && document.body.contains(modal)) {
+            document.body.removeChild(modal);
+        }
 
-        generarCalendario(fechaActual);
-        mostrarEventosDelMes();
-        mostrarNotificaciones();
+        if (calendarEl) {
+            generarCalendario(fechaActual);
+        }
+        
+        if (eventosContainer) {
+            mostrarEventosDelMes();
+        }
+        
+        if (listaNotificaciones) {
+            mostrarNotificaciones();
+        }
 
         alert('✅ Evento actualizado correctamente');
     }
@@ -647,14 +722,25 @@ document.addEventListener('DOMContentLoaded', function () {
         eventos = eventos.filter(evento => evento.id !== id);
         guardarEventos();
 
-        generarCalendario(fechaActual);
-        mostrarEventosDelMes();
-        mostrarNotificaciones();
+        if (calendarEl) {
+            generarCalendario(fechaActual);
+        }
+        
+        if (eventosContainer) {
+            mostrarEventosDelMes();
+        }
+        
+        if (listaNotificaciones) {
+            mostrarNotificaciones();
+        }
 
         alert('✅ Evento eliminado correctamente');
     }
 
     function mostrarNotificaciones() {
+        // Verificar que el contenedor existe
+        if (!listaNotificaciones) return;
+
         const hoy = new Date();
         const eventosProximos = eventos.filter(evento => {
             const fechaEvento = new Date(evento.fecha);
@@ -730,15 +816,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 const btnEditar = itemNotificacion.querySelector('.btn-notificacion-editar');
                 const btnEliminar = itemNotificacion.querySelector('.btn-notificacion-eliminar');
 
-                btnEditar.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    editarEvento(evento.id);
-                });
+                if (btnEditar) {
+                    btnEditar.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        editarEvento(evento.id);
+                    });
+                }
                 
-                btnEliminar.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    eliminarEvento(evento.id);
-                });
+                if (btnEliminar) {
+                    btnEliminar.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        eliminarEvento(evento.id);
+                    });
+                }
 
                 // Hacer clickeable la notificación para ver detalles
                 itemNotificacion.addEventListener('click', () => mostrarDetallesCompletosEvento(evento));

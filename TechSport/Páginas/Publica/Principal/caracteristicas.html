@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Características | TechSport</title>
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/HeaderFooter/estilos.css">
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Inicio/estilos.css">
+    <style>
+        /* ESTILOS ESPECÍFICOS PARA ESTA PÁGINA */
+        main {
+            padding-top: 120px;
+        }
+ 
+        .features-hero {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            padding: 100px 5%;
+            text-align: center;
+            width: 100%;
+        }
+
+        .features-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .features-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 5%;
+        }
+
+        .feature-section {
+            margin-bottom: 50px;
+        }
+
+        .feature-section h2 {
+            color: #2563eb;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: #1e40af;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .features-hero {
+                padding: 80px 5%;
+            }
+
+            .features-hero h1 {
+                font-size: 2rem;
+            }
+
+            .feature-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-top">
+            <img src="/TechSport/Recursos/img/Nombre.png" class="logo-header">
+        </div>
+
+        <nav class="navbar">
+            <ul class="nav-menu">
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/Principal/inicio.html">Inicio</a></li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/Principal/caracteristicas.html">Características</a></li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/Principal/contacto.html">Contacto</a></li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/EleccionUsuario/eleccion.html">Iniciar sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección Hero -->
+        <section class="features-hero">
+            <h1>Características Principales de TechSport</h1>
+            <p>Las herramientas esenciales para la gestión deportiva profesional</p>
+        </section>
+
+        <!-- Contenedor de características -->
+        <div class="features-container">
+            <!-- Gestión de estadísticas -->
+            <section class="feature-section">
+                <h2>Gestión de Estadísticas</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Control completo por entrenadores</h3>
+                        <p>Los entrenadores pueden registrar y gestionar todas las estadísticas de los jugadores,
+                            incluyendo goles y métricas específicas de cada deporte.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Seguimiento físico</h3>
+                        <p>Monitorización detallada del rendimiento físico de cada jugador, con métricas personalizables
+                            según las necesidades del equipo.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Canal de difusión -->
+            <section class="feature-section">
+                <h2>Canal de Difusión</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Gestión tipo Moodle</h3>
+                        <p>Sistema de comunicación centralizado donde los entrenadores pueden añadir o eliminar
+                            jugadores y gestionar todo el contenido.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Compartir multimedia</h3>
+                        <p>Los entrenadores pueden enviar videos y fotos a través del canal, y tanto entrenadores como
+                            jugadores pueden almacenar este contenido.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Restricciones de acceso</h3>
+                        <p>Solo los entrenadores pueden almacenar y gestionar alineaciones, convocatorias y planes de
+                            entrenamiento.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Notificaciones -->
+            <section class="feature-section">
+                <h2>Sistema de Notificaciones</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Alertas por email</h3>
+                        <p>Todas las notificaciones importantes se envían directamente al correo electrónico de los
+                            usuarios.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Gestión de comunicaciones</h3>
+                        <p>Los entrenadores pueden organizar y controlar completamente el canal de difusión y las
+                            notificaciones.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer compartido -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="/TechSport/Recursos/img/Logo.png" alt="TechSport">
+                </div> 
+
+                <h3>TechSport</h3>
+                <p>Gestión Deportiva Inteligente</p>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 TechSport. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/TechSport/Recursos/JavaScript/Principal/script.js"></script>
+</body>
+
+</html>

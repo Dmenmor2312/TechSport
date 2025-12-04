@@ -20,19 +20,25 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a class="nav-link" href="/TechSport/Páginas/Privadas/Profesional/inicio.html">Inicio</a></li>
                 <li><a class="nav-link" href="#">Enviar Mensaje</a></li>
-                <li><a class="nav-link" href="#">Bandeja de Entrada</a></li>
-                <li><a class="nav-link" href="#">Perfil</a></li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Privadas/Profesional/BandejaEntrada.html">Bandeja de
+                        Entrada</a></li>
+                <li><a class="nav-link" href="#">Estadisticas Partido</a></li>
+                <li><a class="nav-link" href="#">Estadisticas Fisicas</a></li>
+                <li><a class="nav-link" href="#">Cerrar Sesión</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <!-- BOTÓN PARA IR AL EDITOR DE CALENDARIO -->
         <div style="text-align: center; margin: 20px 0;">
             <button id="btn-editar-calendario" class="btn-primary" style="padding: 10px 20px; font-size: 12px;">
-                📅 Editar Calendario
+                🗓️ Editar Calendario
+            </button>
+            <button id="btn-gestion-equipo" class="btn-primary" style="padding: 10px 20px; font-size: 12px;">
+                ℹ️ Gestión del Equipo
             </button>
         </div>
+
 
         <div class="leyenda-colores">
             <div class="color-item">
@@ -78,24 +84,38 @@
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-logo">
-                <img src="/TechSport/Recursos/img/logo.png" alt="Logo Footer" />
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="/TechSport/Recursos/img/Logo.png" alt="TechSport">
+                </div>
+
+                <h3>TechSport</h3>
+                <p>Gestión Deportiva Inteligente</p>
             </div>
-            <h3>TechSport</h3>
-            <p>Entrena mejor. Progresa más rápido.</p>
+
+            <div class="footer-copyright">
+                <p>© 2025 TechSport.</p>
+            </div>
         </div>
     </footer>
     <script src="/TechSport/Recursos/JavaScript/Compartidos/Entrenador-Profesional/calendario-editor.js"></script>
-    
+
     <script>
         // Agregar funcionalidad al botón de editar calendario
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const btnEditarCalendario = document.getElementById('btn-editar-calendario');
-            
+            const btnGestionEquipo = document.getElementById('btn-gestion-equipo');
+
             if (btnEditarCalendario) {
-                btnEditarCalendario.addEventListener('click', function() {
+                btnEditarCalendario.addEventListener('click', function () {
                     // Redirigir al editor de calendario
                     window.location.href = '/TechSport/Páginas/Privadas/Profesional/EditarCalendario.html';
+                });
+            }
+            if (btnGestionEquipo) {
+                btnGestionEquipo.addEventListener('click', function () {
+                    // Redirigir a la gestion del equipo
+                    window.location.href = '/TechSport/Páginas/Privadas/Profesional/GestionEquipo.html';
                 });
             }
         });

@@ -6,32 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TechSport - Inicio Entrenador</title>
     <link rel="stylesheet" href="/TechSport/Recursos/CSS/Compartidos/estilos.css" />
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/HeaderFooter/estilos.css">
 </head>
 
 <body data-rol="entrenador">
 
+    <!-- HEADER -->
     <header class="header">
         <div class="header-top">
-            <img src="/TechSport/Recursos/img/Nombre.png" alt="TechSport" class="logo-header" id="logo-interactivo">
+            <img src="/TechSport/Recursos/img/Nombre.png" class="logo-header" id="logo-interactivo" />
         </div>
 
         <nav class="navbar">
-            <ul class="nav-menu" id="navMenu">
+            <ul class="nav-menu">
                 <li><a class="nav-link" href="/TechSport/Páginas/Privadas/Entrenador/inicio.html">Inicio</a></li>
-                <li><a class="nav-link" href="#">Enviar Mensaje</a></li>
-                <li><a class="nav-link" href="#">Bandeja de Entrada</a></li>
-                <li><a class="nav-link" href="#">Perfil</a></li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Privadas/Entrenador/Estadisticas.html">Estadisticas</a></li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Privadas/Entrenador/Equipo.php">Equipo</a></li>
+                <li><a class="nav-link" href="#">Cerrar sesión</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <!-- BOTÓN PARA IR AL EDITOR DE CALENDARIO -->
+
         <div style="text-align: center; margin: 20px 0;">
             <button id="btn-editar-calendario" class="btn-primary" style="padding: 10px 20px; font-size: 12px;">
-                📅 Editar Calendario
+                🗓️ Editar Calendario
+            </button>
+            <button id="btn-gestion-equipo" class="btn-primary" style="padding: 10px 20px; font-size: 12px;">
+                ℹ️ Gestión del Equipo
             </button>
         </div>
+
 
         <div class="leyenda-colores">
             <div class="color-item">
@@ -60,7 +66,6 @@
             </div>
         </div>
 
-        <!-- Los controles de navegación se generan automáticamente -->
         <div id="calendar"></div>
 
         <div id="eventos" class="card">
@@ -72,29 +77,38 @@
             <h2>Notificaciones</h2>
             <ul id="lista-notificaciones"></ul>
         </div>
+
     </main>
 
-    <!-- FOOTER -->
+    <!-- FOOTER  -->
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-logo">
-                <img src="/TechSport/Recursos/img/logo.png" alt="Logo Footer" />
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="/TechSport/Recursos/img/Logo.png" alt="TechSport">
+                </div>
+
+                <h3>TechSport</h3>
+                <p>Gestión Deportiva Inteligente</p>
             </div>
-            <h3>TechSport</h3>
-            <p>Entrena mejor. Progresa más rápido.</p>
+
+            <div class="footer-bottom">
+                <p>© 2025 TechSport. Todos los derechos reservados.</p>
+            </div>
         </div>
     </footer>
 
     <script src="/TechSport/Recursos/JavaScript/Compartidos/Entrenador-Profesional/calendario-editor.js"></script>
-    
+
     <script>
         // Agregar funcionalidad al botón de editar calendario
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const btnEditarCalendario = document.getElementById('btn-editar-calendario');
-            
+            const btnGestionEquipo = document.getElementById('btn-gestion-equipo');
+
             if (btnEditarCalendario) {
-                btnEditarCalendario.addEventListener('click', function() {
-                    // Redirigir al editor de calendario del entrenador
+                btnEditarCalendario.addEventListener('click', function () {
+                    // Redirigir al editor de calendario
                     window.location.href = '/TechSport/Páginas/Privadas/Entrenador/EditarCalendario.html';
                 });
             }
