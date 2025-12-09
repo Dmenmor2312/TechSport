@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechSport | Gestión Deportiva Profesional</title>
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/HeaderFooter/estilos.css">
+    <link rel="stylesheet" href="/TechSport/Recursos/CSS/Inicio/estilos.css">
+</head>
+
+<body>
+    <!-- Overlay para animación inicial -->
+    <div class="overlay-logo" id="overlayLogo">
+        <div class="logo-animado" id="logoAnimado">
+            <img src="/TechSport/Recursos/img/Logo.png" alt="Logo TechSport" class="logo-inicial">
+            <img src="/TechSport/Recursos/img/Nombre.png" alt="TechSport" class="nombre-inicial">
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="header-top">
+            <img src="/TechSport/Recursos/img/Nombre.png" class="logo-header" id="logo-interactivo" />
+        </div>
+
+        <nav class="navbar">
+            <ul class="nav-menu">
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/Principal/inicio.html">Inicio</a></li>
+                <li><a class="nav-link"
+                        href="/TechSport/Páginas/Publica/Principal/caracteristicas.php">Características</a></li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/Principal/contacto.php">Contacto</a></li>
+                <li><a class="nav-link" href="/TechSport/Páginas/Publica/EleccionUsuario/eleccion.html">Iniciar
+                        sesión</a></li>
+                <li>
+                    <button id="toggleAnimationBtn" class="cookie-btn">
+                        <span id="animationStatus">❌ Desactivar animación</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-part-1">Potencia tu</span>
+                    <span class="title-part-2">gestión deportiva</span>
+                </h1>
+
+                <p class="hero-subtitle">La plataforma integral para entrenadores y organizaciones deportivas</p>
+
+                <div class="hero-cta">
+                    <a href="/TechSport/Páginas/Publica/EleccionUsuario/eleccion.html" class="btn btn-primary">
+                        Comenzar ahora →
+                    </a>
+
+                    <a href="/TechSport/Páginas/Publica/Principal/caracteristicas.html" class="btn btn-secondary">
+                        Conocer más
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Banner de cookies -->
+        <div class="cookie-banner" id="cookieBanner">
+            <div class="cookie-content">
+                <p>🍪 Utilizamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestro uso de
+                    cookies.</p>
+                <div class="cookie-buttons">
+                    <button id="acceptCookies" class="btn btn-primary">Aceptar</button>
+                    <button id="rejectCookies" class="btn btn-secondary">Rechazar</button>
+                    <a href="/TechSport/Páginas/Publica/Principal/politica_cookies.php" class="cookie-link">Más
+                        información</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="/TechSport/Recursos/img/Logo.png" alt="TechSport">
+                </div>
+
+                <h3>TechSport</h3>
+                <p>Gestión Deportiva Inteligente</p>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 TechSport. Todos los derechos reservados.</p>
+                <p><a href="/TechSport/Páginas/Publica/Principal/politica_cookies.php" class="footer-link">Política de
+                        Cookies</a></p>
+                <p><a href="/TechSport/Páginas/Publica/Principal/politica_privacidad.php" class="footer-link">Política de
+                        Privacidad</a></p>
+                
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // Funciones para manejar cookies
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        function getCookie(name) {
+            const cookieName = name + "=";
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const cookieArray = decodedCookie.split(';');
+
+            for (let i = 0; i < cookieArray.length; i++) {
+                let cookie = cookieArray[i];
+                while (cookie.charAt(0) === ' ') {
+                    cookie = cookie.substring(1);
+                }
+                if (cookie.indexOf(cookieName) === 0) {
+                    return cookie.substring(cookieName.length, cookie.length);
+                }
+            }
+            return "";
+        }
+
+        function deleteCookie(name) {
+            document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        }
+
+        // Funciones específicas para la aplicación
+        function checkAnimationPreference() {
+            const animationDisabled = getCookie("animationDisabled");
+            const cookiesAccepted = getCookie("cookiesAccepted");
+
+            // Si no se han aceptado cookies, mostramos el banner
+            if (!cookiesAccepted) {
+                document.getElementById('cookieBanner').style.display = 'block';
+            }
+
+            // Si la animación está desactivada o no hay cookies aceptadas, ocultamos inmediatamente
+            if (animationDisabled === "true" || !cookiesAccepted) {
+                const overlayLogo = document.getElementById('overlayLogo');
+                overlayLogo.style.display = 'none';
+                updateAnimationButton(true);
+            } else {
+                // Mostrar animación normal
+                const overlayLogo = document.getElementById('overlayLogo');
+                setTimeout(() => {
+                    overlayLogo.style.opacity = '0';
+                    setTimeout(() => { overlayLogo.style.display = 'none'; }, 800);
+                }, 2500);
+                updateAnimationButton(false);
+            }
+        }
+
+        function updateAnimationButton(isDisabled) {
+            const button = document.getElementById('toggleAnimationBtn');
+            const statusText = document.getElementById('animationStatus');
+
+            if (isDisabled) {
+                statusText.textContent = "✅ Activar animación";
+                button.title = "Haz clic para activar la animación de inicio";
+            } else {
+                statusText.textContent = "❌ Desactivar animación";
+                button.title = "Haz clic para desactivar la animación de inicio";
+            }
+        }
+
+        function toggleAnimationPreference() {
+            const currentValue = getCookie("animationDisabled");
+            const cookiesAccepted = getCookie("cookiesAccepted");
+
+            if (!cookiesAccepted || cookiesAccepted !== "true") {
+                alert("Por favor, acepta las cookies primero para poder guardar tus preferencias.");
+                document.getElementById('cookieBanner').style.display = 'block';
+                return;
+            }
+
+            if (currentValue === "true") {
+                deleteCookie("animationDisabled");
+                updateAnimationButton(false);
+            } else {
+                setCookie("animationDisabled", "true", 365);
+                updateAnimationButton(true);
+            }
+        }
+
+        // Manejo del banner de cookies
+        function setupCookieBanner() {
+            const acceptBtn = document.getElementById('acceptCookies');
+            const rejectBtn = document.getElementById('rejectCookies');
+
+            acceptBtn.addEventListener('click', function () {
+                setCookie("cookiesAccepted", "true", 365);
+                document.getElementById('cookieBanner').style.display = 'none';
+                // Una vez aceptadas, guardamos la preferencia de animación actual
+                if (getCookie("animationDisabled") !== "true") {
+                    setCookie("animationDisabled", "false", 365);
+                }
+            });
+
+            rejectBtn.addEventListener('click', function () {
+                // Eliminamos cookies existentes
+                deleteCookie("cookiesAccepted");
+                deleteCookie("animationDisabled");
+                document.getElementById('cookieBanner').style.display = 'none';
+            });
+        }
+
+        // Inicialización cuando el DOM está cargado
+        document.addEventListener('DOMContentLoaded', function () {
+            checkAnimationPreference();
+            setupCookieBanner();
+
+            // Configurar botón de alternar animación
+            const toggleBtn = document.getElementById('toggleAnimationBtn');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', toggleAnimationPreference);
+            }
+
+            // Configurar logo interactivo (opcional)
+            const logoInteractivo = document.getElementById('logo-interactivo');
+            if (logoInteractivo) {
+                logoInteractivo.addEventListener('click', function () {
+                    // Acción adicional al hacer clic en el logo
+                    console.log("Logo clickeado");
+                });
+            }
+        });
+
+        // Función para verificar cookies (útil para otras páginas)
+        function checkCookiesAccepted() {
+            return getCookie("cookiesAccepted") === "true";
+        }
+    </script>
+
+    <style>
+        /* Estilos para el banner de cookies */
+        .cookie-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cookie-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .cookie-content p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .cookie-link {
+            color: #4dabf7;
+            text-decoration: none;
+            font-size: 13px;
+            margin-left: auto;
+        }
+
+        .cookie-link:hover {
+            text-decoration: underline;
+        }
+
+        .cookie-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .cookie-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-link {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .cookie-banner {
+                width: 95%;
+                bottom: 10px;
+            }
+
+            .cookie-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .cookie-link {
+                margin-left: 0;
+                margin-top: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,384 @@
+/* =============================== */
+/* VARIABLES COMPATIBLES */
+/* =============================== */
+:root {
+    --color-primary: #1e40af;
+    --color-accent: #2563eb;
+    --color-light-bg: #e3ecf5;
+    --color-light-bg-2: #cfd9e3;
+    --color-card-bg: #f8fafc;
+    --color-white: #ffffff;
+    --radius: 12px;
+    --transition: 0.3s ease;
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* =============================== */
+/* RESET COMPATIBLE */
+/* =============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =============================== */
+/* BODY (ESPECÍFICO PARA ESTA PÁGINA) */
+/* =============================== */
+body.pagina-eleccion {
+    background: linear-gradient(to bottom, var(--color-light-bg), var(--color-light-bg-2));
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: var(--color-primary);
+    position: relative;
+}
+
+/* =============================== */
+/* CONTENIDO PRINCIPAL (ESPECÍFICO) */
+/* =============================== */
+.main-content-eleccion {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 140px 20px 60px; /* Espacio para header y footer */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Contenedor de perfil - AHORA CENTRADO */
+.profile-container {
+    background: var(--color-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 60px 40px;
+    text-align: center;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto; /* Esto centra horizontalmente */
+    animation: containerEntrance 0.8s ease-out both;
+    animation-delay: 0.3s;
+}
+
+@keyframes containerEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logo específico */
+.profile-logo {
+    margin-bottom: 30px;
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.profile-logo img {
+    height: 100px;
+    width: auto;
+    filter: drop-shadow(0 4px 8px rgba(30, 64, 175, 0.2));
+}
+
+/* Título específico - CENTRADO */
+.profile-title {
+    color: var(--color-primary);
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.profile-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-accent), #3b82f6);
+    border-radius: 2px;
+}
+
+/* =============================== */
+/* OPCIONES DE USUARIO - AHORA CENTRADAS */
+/* =============================== */
+.profile-options {
+    display: flex;
+    justify-content: center; /* Esto centra horizontalmente */
+    align-items: center; /* Esto centra verticalmente si hay altura */
+    gap: 60px; /* Más espacio entre opciones */
+    flex-wrap: nowrap;
+    margin: 0 auto; /* Centrado automático */
+    max-width: 700px; /* Ancho máximo para las opciones */
+    width: 100%;
+}
+
+.profile-card {
+    background: var(--color-card-bg);
+    border-radius: var(--radius);
+    padding: 40px 30px;
+    width: 280px;
+    min-height: 320px;
+    text-decoration: none;
+    transition: all var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    margin: 0; /* Sin márgenes que desplacen */
+}
+
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-accent), #3b82f6);
+    transform: scaleX(0);
+    transition: transform var(--transition);
+    transform-origin: left;
+}
+
+.profile-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-accent);
+}
+
+.profile-card:hover::before {
+    transform: scaleX(1);
+}
+
+.profile-card img {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 25px;
+    object-fit: contain;
+    transition: transform var(--transition);
+}
+
+.profile-card:hover img {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.profile-card span {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: color var(--transition);
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+.profile-card:hover span {
+    color: var(--color-accent);
+}
+
+/* Indicador de selección */
+.profile-card::after {
+    content: '→';
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: var(--color-accent);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all var(--transition);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.profile-card:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* =============================== */
+/* UTILIDADES ESPECÍFICAS */
+/* =============================== */
+.text-center {
+    text-align: center;
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.mt-2 { margin-top: 2rem; }
+.mb-2 { margin-bottom: 2rem; }
+
+/* =============================== */
+/* RESPONSIVE ESPECÍFICO - CENTRADO TAMBIÉN */
+/* =============================== */
+@media (max-width: 1024px) {
+    .main-content-eleccion {
+        padding: 130px 20px 50px;
+    }
+    
+    .profile-options {
+        gap: 40px;
+        max-width: 600px;
+    }
+    
+    .profile-card {
+        width: 240px;
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    body.pagina-eleccion {
+        min-height: 100vh;
+    }
+    
+    .main-content-eleccion {
+        padding: 140px 15px 40px;
+        align-items: flex-start;
+    }
+    
+    .profile-container {
+        padding: 40px 25px;
+        margin-top: 20px;
+    }
+    
+    .profile-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    
+    /* EN MÓVIL: Las opciones se apilan pero siguen centradas */
+    .profile-options {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .profile-card {
+        width: 100%;
+        max-width: 320px;
+        min-height: 280px;
+        padding: 30px 20px;
+        margin: 0 auto;
+    }
+    
+    .profile-card img {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .profile-card span {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content-eleccion {
+        padding: 130px 10px 30px;
+    }
+    
+    .profile-container {
+        padding: 30px 20px;
+        border-radius: 10px;
+    }
+    
+    .profile-logo img {
+        height: 80px;
+    }
+    
+    .profile-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    .profile-options {
+        gap: 20px;
+        max-width: 300px;
+    }
+    
+    .profile-card {
+        padding: 25px 15px;
+        min-height: 250px;
+        max-width: 280px;
+    }
+    
+    .profile-card img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 20px;
+    }
+    
+    .profile-card span {
+        font-size: 1.2rem;
+    }
+}
+
+/* =============================== */
+/* ANIMACIONES ADICIONALES */
+/* =============================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-card:nth-child(1) {
+    animation: fadeIn 0.6s ease-out 0.4s both;
+}
+
+.profile-card:nth-child(2) {
+    animation: fadeIn 0.6s ease-out 0.6s both;
+}
+
+/* =============================== */
+/* ESTILOS PARA OVERLAY (si existe) */
+/* =============================== */
+body.has-overlay .main-content-eleccion {
+    opacity: 0;
+    animation: contentAppear 0.8s ease-out 1.8s forwards;
+}
+
+@keyframes contentAppear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
