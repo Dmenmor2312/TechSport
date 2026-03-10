@@ -1,0 +1,524 @@
+/* TechSport - Convocatorias CSS */
+/* Archivo: /TechSport/Recursos/CSS/Entrenador/convocatoria.css */
+
+/* Variables de color */
+:root {
+    --primary-color: #1a2a6c;
+    --secondary-color: #b21f1f;
+    --tertiary-color: #fdbb2d;
+    --success-color: #38a169;
+    --error-color: #e53e3e;
+    --warning-color: #d69e2e;
+    --info-color: #3182ce;
+    --light-color: #f8fafc;
+    --dark-color: #2d3748;
+    --gray-light: #e2e8f0;
+    --gray-medium: #a0aec0;
+    --gray-dark: #4a5568;
+}
+
+/* Estilos generales */
+.convocatoria-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.page-title {
+    color: var(--dark-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+/* Información del entrenador */
+.convocatoria-info {
+    background: var(--light-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.info-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-row:last-child {
+    margin-bottom: 0;
+}
+
+.info-item {
+    flex: 1;
+    min-width: 200px;
+}
+
+.info-label {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+}
+
+.info-value {
+    color: var(--dark-color);
+}
+
+/* Pestañas de navegación */
+.nav-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--gray-light);
+    padding-bottom: 0.5rem;
+}
+
+.nav-tab {
+    padding: 0.75rem 1.5rem;
+    background: var(--light-color);
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    color: var(--gray-dark);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-tab:hover {
+    background: var(--gray-light);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.nav-tab.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+/* Contenido de pestañas */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Alertas */
+.alert {
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert-success {
+    background: #f0fff4;
+    border: 2px solid #c6f6d5;
+    color: #22543d;
+}
+
+.alert-error {
+    background: #fff5f5;
+    border: 2px solid #fed7d7;
+    color: #742a2a;
+}
+
+/* Cards grid */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+/* Badges */
+.badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.badge-pendiente {
+    background: #feebc8;
+    color: #9c4221;
+}
+
+.badge-publicada {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.badge-cerrada {
+    background: #e2e8f0;
+    color: #4a5568;
+}
+
+/* Botones */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #15245e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(26, 42, 108, 0.3);
+}
+
+.btn-secondary {
+    background: #4a5568;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #2d3748;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: var(--error-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c53030;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(229, 62, 62, 0.3);
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.btn-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+/* Eliminar convocatoria */
+.delete-convocatoria-btn {
+    background: var(--error-color);
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.delete-convocatoria-btn:hover {
+    background: #c53030;
+    transform: scale(1.1);
+}
+
+/* Estados vacíos */
+.empty-state {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: var(--light-color);
+    border-radius: 12px;
+    margin: 2rem 0;
+}
+
+.empty-state div {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    color: var(--gray-dark);
+    margin-bottom: 1.5rem;
+}
+
+/* Formularios */
+.form-section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(26, 42, 108, 0.1);
+}
+
+/* Grid de jugadores convocados */
+.convocados-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.convocado-card {
+    background: var(--light-color);
+    border-radius: 10px;
+    padding: 1.25rem;
+    position: relative;
+    border: 2px solid var(--gray-light);
+    transition: all 0.3s ease;
+}
+
+.convocado-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.convocado-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.convocado-dorsal {
+    background: var(--primary-color);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.convocado-eliminar-form {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.convocado-eliminar {
+    background: var(--error-color);
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.convocado-eliminar:hover {
+    background: #c53030;
+    transform: scale(1.1);
+}
+
+/* Contador de jugadores */
+.jugador-counter {
+    background: var(--success-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Tabla de estadísticas */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.table th {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.table tr:hover {
+    background: var(--light-color);
+}
+
+.stat-input {
+    width: 70px;
+    padding: 0.5rem;
+    border: 2px solid var(--gray-light);
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.stat-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .convocatoria-container {
+        padding: 0 1rem;
+    }
+    
+    .nav-tabs {
+        flex-direction: column;
+    }
+    
+    .nav-tab {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .convocados-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-group .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.5rem;
+    }
+    
+    .form-section {
+        padding: 1rem;
+    }
+    
+    .card {
+        padding: 1rem;
+    }
+}
